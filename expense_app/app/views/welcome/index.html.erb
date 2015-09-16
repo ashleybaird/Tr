@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>Travel Expenses</title>
+</head>
+<body>
+	<h1>Welcome!</h1>
+	<%= form_tag "/sessions" do %>
+		<h4>Username</h4>
+		<h5> <%= text_field_tag :username %> <br> </h5>
+		<h4>Password</h4>
+		<h5> <%= password_field_tag :password %> <br> </h5> 
+		 <%= button_to "Log In", {:controller => "sessions", :action => "create"} %> <br>
+	<% end %>
+
+	<%= form_tag "/api/users" do %>
+		<h4>Username</h4>
+		<h5> <%= text_field_tag :username %> <br> </h5>
+		<h4>Password</h4>
+		<h5> <%= password_field_tag :password %> <br> </h5> 
+		<h4>Avatar</h4>
+		<h5> <%= text_field_tag :avatar %> </h5>
+		<%= button_to "Join", {:controller => "/api/users", :action => "create"} %>
+	<% end %>
+
+
+
+</body>
+</html>

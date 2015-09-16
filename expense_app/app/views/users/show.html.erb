@@ -1,0 +1,51 @@
+<html>
+<head>
+	<title><%= @user.username %></title>
+</head>
+<body>
+	<h1>Welcome <%= @user.username %></h1>
+	<img src="<%= @user.avatar %>">
+
+	<button id="new-trip"> Add a trip! </button>
+	<div id="newTrip">
+		<script type="text/template" id="add_trip">
+			<h3> Add a trip </h3>
+			<h4> Total Budget </h4>
+				<input type="text" name="total" id="total">
+			<h5>  Length of trip </h5>
+				<input type="text" name="number" id="number">
+			<h5> Hotel Budget </h5>
+				<input type="text" name="hotel" id="hotel">
+			<h5> Food Budget </h5>
+				<input type="text" name="food" id="food">
+			<h5> Activity Budget </h5>
+				<input type="text" name="activity" id="activity">
+			<h5> Travel </h5>
+				<input type="text" name="travel" id="travel">
+			<button id="add"> Add </button>
+		</script>
+	</div>
+
+	<div id="current">
+		<script type="text/template" id="current_trip">
+		<h3> Budget for the day: <%= avg_days %> </h3>
+		Hotel: <%= avg_hotel %> <br>
+		Food: <%= avg_food %> <br>
+		Activity: <%= avg_activity %> <br>
+		Travel: <%= avg_travel %>
+
+		<h3> Your Days spendings </h3>
+			Hotel: 
+				<input type="text" name="hotel" id="avg-hotel">
+			Food:
+				<input type="text" name="food" id="avg-food">
+			Activity:
+				<input type="text" name="activity" id="avg-activity">
+			Travel:
+				<input type="text" name="travel" id="avg-travel">
+			<button id="update_trip"> Update </button>
+		</script>
+	</div>
+
+</body>
+</html>

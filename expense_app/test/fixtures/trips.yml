@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total: 1
+  hotel: 1
+  food: 1
+  activities: 1
+  travel: 1
+  num_days: 1
+  avg_days: 1
+  avg_hotel: 1
+  avg_food: 1
+  avg_travel: 1
+  avg_activities: 1
+  user_id_id: 
+
+two:
+  total: 1
+  hotel: 1
+  food: 1
+  activities: 1
+  travel: 1
+  num_days: 1
+  avg_days: 1
+  avg_hotel: 1
+  avg_food: 1
+  avg_travel: 1
+  avg_activities: 1
+  user_id_id: 
