@@ -15,6 +15,8 @@ class Api::UsersController < ApplicationController
        		redirect_to root_path
     else 
 		user = User.find_by(username: params[:username])
+		UserMailer.welcome_email(@user).deliver_later
+        format.html { redirect_to(@user, notice: 'User was successfully created.')}
 		Trip.create(user_id: user.id)
 		session[:user_id] = user.id
 		redirect_to user_path(user)
@@ -35,7 +37,7 @@ class Api::UsersController < ApplicationController
 	private
 
 	def user_params
-		params.permit(:username, :password)
+		params.permit(:username, :password, :email)
 	end
 
 
