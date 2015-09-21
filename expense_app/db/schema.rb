@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916153731) do
+ActiveRecord::Schema.define(version: 20150916153731) do 
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "trips", force: :cascade do |t|
-    t.integer  "total"
-    t.integer  "hotel"
-    t.integer  "food"
-    t.integer  "activities"
-    t.integer  "travel" 
-    t.integer  "num_days"
+    t.integer  "total", default: 0
+    t.integer  "hotel", default: 0
+    t.integer  "food", default: 0
+    t.integer  "activities", default: 0
+    t.integer  "travel", default: 0 
+    t.integer  "num_days", default: 0
     t.integer  "avg_days", default: 0
     t.integer  "avg_hotel", default: 0
     t.integer  "avg_food", default: 0
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20150916153731) do
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password_digest"
-    t.string   "avatar"
+    t.string   "avatar", default: "http://bangkeodanang.com/templates/images/empty_avatar.png"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

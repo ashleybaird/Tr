@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	has_many :trips
+	has_one :trip
 
 	validates :username, uniqueness: true
 	validates :username, presence: true

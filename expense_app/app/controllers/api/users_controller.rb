@@ -10,16 +10,26 @@ class Api::UsersController < ApplicationController
 	end
 
 	def create
-		User.create(user_params)
+		@user = User.create(user_params)
+		if @user.errors.any?
+       		redirect_to root_path
+    else 
 		user = User.find_by(username: params[:username])
+		Trip.create(user_id: user.id)
 		session[:user_id] = user.id
-		redirect_to user_path(user)
+		render '/welcome'
+	end
 	end
 
 	def update
-		@user = User.find(params[:id])
-		@user.update(avatar: params[:avatar])
-		render json: @user
+		@user = User.find(session[:user_id])
+       if logged_in? && check_current_user? 
+        @user.image_url = params[:image]
+        @user.save(:validate => false)
+        render :json
+      else
+        redirect_to user_path(@user)
+      end
 	end
 
 	private
@@ -27,4 +37,6 @@ class Api::UsersController < ApplicationController
 	def user_params
 		params.permit(:username, :password, :avatar)
 	end
+
+
 end

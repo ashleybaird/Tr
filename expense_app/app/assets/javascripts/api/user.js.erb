@@ -1,0 +1,178 @@
+console.log("linked");
+
+$(function(){
+	console.log('initializing');
+
+		var trip_id = $("#trip_id").val();
+		var saveRates = function(hotel,food,activities,travel,avg_days,avg_hotel,avg_food,avg_travel,avg_activities) {
+			$.ajax({
+				url: "/api/users/" + user_id + "/trips/" + trip_id,
+				method: "PUT",
+				data: {
+					hotel: hotel,
+					food: food,
+					activities: activities,
+					travel: travel,
+					avg_days: avg_days,
+					avg_hotel: avg_hotel,
+					avg_food: avg_food,
+					avg_travel: avg_travel,
+					avg_activities: avg_activities
+				},
+				success: function(newTripRate) {
+					$("#dayTotal").text(newTripRate.avg_days); 
+					$("#hotelTotal").text(newTripRate.avg_hotel);
+					$("#foodTotal").text(newTripRate.avg_food);
+					$("#activityTotal").text(newTripRate.avg_activities);
+					$("#travelTotal").text(newTripRate.avg_travel);
+					
+				}
+			});
+		};
+		var convertValues = function(value) {
+			var usersRate = this.value;
+			var exchangeRate;
+			if (this.value === "USDAED") {
+				exchangeRate = 3.67275;
+			} else if (this.value === "USDAFN") {
+				exchangeRate = 64.349998;
+			} else if (this.value === "USDALL") {
+				exchangeRate = 123.489502;
+			} else if (this.value === "USDAMD") {
+				exchangeRate = 481.73999;
+			} else if (this.value === "USDANG") {
+				exchangeRate = 1.79038;
+			} else if (this.value === "USDAOA") {
+				exchangeRate = 135.294998;
+			}
+			$.ajax({
+				url: "/api/users/" + user_id + "/trips/" + trip_id,
+				method: "GET",
+				data: {},
+				success: function(trip) {
+					var hotel = trip.hotel * exchangeRate;
+					var food = trip.food * exchangeRate;
+					var activities = trip.activities * exchangeRate;
+					var travel = trip.travel * exchangeRate;
+					var avg_days = trip.avg_days * exchangeRate;
+					var avg_hotel = trip.avg_hotel * exchangeRate;
+					var avg_food = trip.avg_food * exchangeRate;
+					var avg_travel = trip.avg_travel * exchangeRate;
+					var avg_activities = trip.avg_activities * exchangeRate;
+					saveRates(hotel,food,activities,travel,avg_days,avg_hotel,avg_food,avg_travel,avg_activities)
+				} 
+			});
+		};
+
+	var getTheAverage = function(hotel_total, food_total, travel_total, activity_total, num_of_days, trip_id) {
+		var hotelTotal = hotel_total / num_of_days;
+		var foodTotal = food_total / num_of_days;
+		var travelTotal = travel_total / num_of_days;
+		var activityTotal = activity_total / num_of_days;
+		return [hotelTotal, foodTotal, travelTotal, activityTotal]
+	};
+
+	var updateTrip = function(avg_hotel, avg_food, avg_travel, avg_activities, avg_days, num_days) {
+		$.ajax({
+			url: "/api/users/" + user_id + "/trips/" + trip_id,
+			method: "PUT",
+			data: {
+				num_days: num_days,
+				avg_days: avg_days,
+				avg_hotel: avg_hotel,
+				avg_food: avg_food,
+				avg_activities: avg_activities,
+				avg_travel: avg_travel,
+			},
+			success: function(returnedTrip) {
+				$("#dayTotal").text(returnedTrip.avg_days); 
+				$("#hotelTotal").text(returnedTrip.avg_hotel);
+				$("#foodTotal").text(returnedTrip.avg_food);
+				$("#activityTotal").text(returnedTrip.avg_activities);
+				$("#travelTotal").text(returnedTrip.avg_travel);
+				$("#avg_hotel").text(" ");
+				$("#avg_food").text(" ");
+				$("#avg_activity").text(" ");
+				$("#avg_travel").text(" ");
+			}
+		});
+
+	};
+
+
+	var newDaysValues = function(event) {
+		event.preventDefault();
+		var newDaysInput = {};
+		newDaysInput.avg_hotel = $("#avg_hotel").val();
+		newDaysInput.avg_food = $("#avg_food").val();
+		newDaysInput.avg_activities = $("#avg_activity").val();
+		newDaysInput.avg_travel= $("#avg_travel").val();
+
+		$.ajax({
+			url: "/api/users/" + user_id + "/trips/" + trip_id,
+			method: "GET",
+			data: {},
+			success: function(data) {
+				var subtractDays = data.num_days -= 1
+				var newTravelHotel = data.hotel - newDaysInput.avg_hotel;
+				var newTravelFood = data.food - newDaysInput.avg_food;
+				var newTravelActivities = data.activities - newDaysInput.avg_activities;
+				var newTravel = data.travel - newDaysInput.avg_travel;
+				var average = getTheAverage(newTravelHotel, newTravelFood, newTravel, newTravelActivities, subtractDays, trip_id);
+				if (subtractDays === 0) {
+					alert("Hope you had a nice trip!");
+				}
+				var tripUpdate = {};
+				tripUpdate.avg_hotel = average[0];
+				tripUpdate.avg_food = average[1];
+				tripUpdate.avg_activities = average[3];
+				tripUpdate.avg_travel = average[2];
+				var avg_day =  average[0] + average[1] + average[3] + average[2];
+
+				updateTrip(average[0], average[1], average[2], average[3], avg_day, subtractDays);
+			}
+		});
+	};
+
+	var submitNewTrip = function(event){
+		event.preventDefault();
+		var average = getTheAverage(Number($("#hotel").val()), Number($("#food").val()), Number($("#travel").val()), Number($("#activity").val()), Number($("#number").val()));
+		var tripUpdate = {};
+				tripUpdate.avg_hotel = average[0];
+				tripUpdate.avg_food = average[1];
+				tripUpdate.avg_activities = average[3];
+				tripUpdate.avg_travel = average[2];
+		var avg_day =  average[0] + average[1] + average[3] + average[2];
+		$.ajax({
+			url: '/api/users/' + user_id + '/trips/' + trip_id,
+			method: 'PUT',
+			data: {
+				total: $("#total").val(),
+				num_days: $("#number").val(),
+				hotel: $("#hotel").val(),
+				food: $("#food").val(),
+				activities: $("#activity").val(),
+				travel: $("#travel").val(),
+				avg_days: avg_day,
+				avg_hotel: tripUpdate.avg_hotel,
+				avg_food: tripUpdate.avg_food,
+				avg_activities: tripUpdate.avg_activities,
+				avg_travel: tripUpdate.avg_travel,
+			},
+			success: function(returnedTrip) {
+				$("#dayTotal").text(returnedTrip.avg_days); 
+				$("#hotelTotal").text(returnedTrip.avg_hotel);
+				$("#foodTotal").text(returnedTrip.avg_food);
+				$("#activityTotal").text(returnedTrip.avg_activities);
+				$("#travelTotal").text(returnedTrip.avg_travel);
+			}
+		});
+	};
+
+		$("#add").on("click", submitNewTrip);
+		$("#update_trip").on("click", newDaysValues);
+		$("#currency_converter").on("change", convertValues);
+
+
+
+});

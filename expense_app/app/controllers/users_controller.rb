@@ -4,7 +4,12 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find(params[:id])
+		if session[:user_id] == nil
+      		redirect_to root_path
+    	elsif logged_in? && check_current_user?
+    		@user = User.find(session[:user_id])
+      end
+
 	end
 
 end

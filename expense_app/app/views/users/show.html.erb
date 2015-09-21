@@ -1,50 +1,72 @@
 <html>
 <head>
 	<title><%= @user.username %></title>
+	<script>
+		var user_id = <%= @user.id %>;
+
+	</script>
 </head>
 <body>
 	<h1>Welcome <%= @user.username %></h1>
-	<img src="<%= @user.avatar %>">
+	  <%=link_to("Log Out", "/sessions", method: :delete) %>
 
-	<button id="new-trip"> Add a trip! </button>
+
 	<div id="newTrip">
-		<script type="text/template" id="add_trip">
+		<form id="add_trip">
 			<h3> Add a trip </h3>
 			<h4> Total Budget </h4>
 				<input type="text" name="total" id="total">
 			<h5>  Length of trip </h5>
-				<input type="text" name="number" id="number">
+				<input type="text" id="number" class="number">
 			<h5> Hotel Budget </h5>
-				<input type="text" name="hotel" id="hotel">
+				<input type="text" id="hotel" class="hotel">
 			<h5> Food Budget </h5>
-				<input type="text" name="food" id="food">
+				<input type="text" id="food" class="food">
 			<h5> Activity Budget </h5>
-				<input type="text" name="activity" id="activity">
+				<input type="text" id="activity" class="activity">
 			<h5> Travel </h5>
-				<input type="text" name="travel" id="travel">
+				<input type="text" id="travel" class="travel">
 			<button id="add"> Add </button>
-		</script>
+		</form>
 	</div>
 
 	<div id="current">
-		<script type="text/template" id="current_trip">
-		<h3> Budget for the day: <%= avg_days %> </h3>
-		Hotel: <%= avg_hotel %> <br>
-		Food: <%= avg_food %> <br>
-		Activity: <%= avg_activity %> <br>
-		Travel: <%= avg_travel %>
+			<h2> Current Trip </h2>
+				<h3> Budget </h3>
 
-		<h3> Your Days spendings </h3>
-			Hotel: 
-				<input type="text" name="hotel" id="avg-hotel">
-			Food:
-				<input type="text" name="food" id="avg-food">
-			Activity:
-				<input type="text" name="activity" id="avg-activity">
-			Travel:
-				<input type="text" name="travel" id="avg-travel">
-			<button id="update_trip"> Update </button>
-		</script>
+				<input type="hidden" value="<%= @user.trip.id %>" id="trip_id">
+				<h5> Convert Currency </h5>
+				<h6> To: </h6>
+				<select id="currency_converter">
+				  <option value="USDAED">USDAED</option>
+				  <option value="USDAFN">USDAFN</option>
+				  <option value="USDALL">USDALL</option>
+				  <option value="USDAMD">USDAMD</option>
+				  <option value="USDANG">USDANG</option>
+				  <option value="USDAOA">USDAOA</option>
+				</select>
+			<h3 id="dayTotal">  <%= @user.trip.avg_days %> </h3>
+			<h3> Hotel: </h3>
+			<h4 id="hotelTotal"> <%= @user.trip.avg_hotel %> <h4> <br>
+				<h3>Food:</h3>
+			<h4 id="foodTotal">  <%= @user.trip.avg_food %> </h4> <br>
+			<h3>Activity :</h3>
+			<h4 id="activityTotal">  <%= @user.trip.avg_activities %></h4> <br>
+			<h3> Travel:</h3>
+			<h4 id ="travelTotal"> <%= @user.trip.avg_travel %> </h4> 
+
+		<form id="current_trip">
+			<h5> Your Days spendings </h5>
+				<h6> Hotel: </h6> 
+					<input type="text" name="hotel" id="avg_hotel">
+				<h6> Food: </h6>
+					<input type="text" name="food" id="avg_food">
+				<h6> Activity: </h6> 
+					<input type="text" name="activity" id="avg_activity">
+				<h6> Travel: </h6>
+					<input type="text" name="travel" id="avg_travel">
+				<button id="update_trip"> Update </button>
+		</form>
 	</div>
 
 </body>
