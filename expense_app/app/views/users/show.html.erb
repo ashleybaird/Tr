@@ -7,66 +7,83 @@
 	</script>
 </head>
 <body>
-	<h1>Welcome <%= @user.username %></h1>
-	  <%=link_to("Log Out", "/sessions", method: :delete) %>
 
+	  <div class="row">
+	  	<div id="header" class="stitched">
+			<h1 id="header">Welcome <%= @user.username %></h1>
+		     <h6> <%=link_to("Log Out", "/sessions", method: :delete) %> </h6>
+		 </div>
+	  	<div class="large-12 columns" id="trip-template">
+				<div id="newTrip" class="large-3 columns">
+					<div class="large-9 columns">
+					<form id="add_trip">
+						<h3> Add a trip </h3>
+						<h4> Total: </h4>
+							<input type="text" name="total" id="total">
+						<h5>  Length of trip </h5>
+							<input type="text" id="number" class="number">
+						<h5> Hotel Budget: </h5>
+							<input type="text" id="hotel" class="hotel">
+						<h5> Food Budget: </h5>
+							<input type="text" id="food" class="food">
+						<h5> Activity Budget: </h5>
+							<input type="text" id="activity" class="activity">
+						<h5> Travel: </h5>
+							<input type="text" id="travel" class="travel">
+						<button id="add"> Add </button>
+					</form>
+				</div>
+			</div>
 
-	<div id="newTrip">
-		<form id="add_trip">
-			<h3> Add a trip </h3>
-			<h4> Total Budget </h4>
-				<input type="text" name="total" id="total">
-			<h5>  Length of trip </h5>
-				<input type="text" id="number" class="number">
-			<h5> Hotel Budget </h5>
-				<input type="text" id="hotel" class="hotel">
-			<h5> Food Budget </h5>
-				<input type="text" id="food" class="food">
-			<h5> Activity Budget </h5>
-				<input type="text" id="activity" class="activity">
-			<h5> Travel </h5>
-				<input type="text" id="travel" class="travel">
-			<button id="add"> Add </button>
-		</form>
-	</div>
+			<div id="current" class="large-9 columns">
+					<h2> Current Trip </h2>
 
-	<div id="current">
-			<h2> Current Trip </h2>
-				<h3> Budget </h3>
+					<h3 id="dayTotal">  Budget:  <%= @user.trip.avg_days %> </h3>
+					<div class ="row">
+						<div id="current-template" class="large-9 columns">
+							<div class="large-3 columns" id="first_options">
+								<h3> Hotel: </h3>
+								<h4 id="hotelTotal"> <%= @user.trip.avg_hotel %> <h4> <br>
+									<h3>Food:</h3>
+								<h4 id="foodTotal">  <%= @user.trip.avg_food %> </h4> <br>
+							</div>
+							<div class="large-3 columns" id="second_options">
+								<h3>Activity:</h3>
+								<h4 id="activityTotal">  <%= @user.trip.avg_activities %></h4>  <br>
+								<h3> Travel:</h3>
+								<h4 id ="travelTotal"> <%= @user.trip.avg_travel %> </h4>
+							</div>
+						</div>
+						<input type="hidden" value="<%= @user.trip.id %>" id="trip_id">
+					</div>
+							<select id="currency_converter">
+							  <option value="USDAED">USDAED</option>
+							  <option value="USDAFN">USDAFN</option>
+							  <option value="USDALL">USDALL</option>
+							  <option value="USDAMD">USDAMD</option>
+							  <option value="USDANG">USDANG</option>
+							  <option value="USDAOA">USDAOA</option>
+							</select>
+						<h5> Convert Currency </h5>
 
-				<input type="hidden" value="<%= @user.trip.id %>" id="trip_id">
-				<h5> Convert Currency </h5>
-				<h6> To: </h6>
-				<select id="currency_converter">
-				  <option value="USDAED">USDAED</option>
-				  <option value="USDAFN">USDAFN</option>
-				  <option value="USDALL">USDALL</option>
-				  <option value="USDAMD">USDAMD</option>
-				  <option value="USDANG">USDANG</option>
-				  <option value="USDAOA">USDAOA</option>
-				</select>
-			<h3 id="dayTotal">  <%= @user.trip.avg_days %> </h3>
-			<h3> Hotel: </h3>
-			<h4 id="hotelTotal"> <%= @user.trip.avg_hotel %> <h4> <br>
-				<h3>Food:</h3>
-			<h4 id="foodTotal">  <%= @user.trip.avg_food %> </h4> <br>
-			<h3>Activity :</h3>
-			<h4 id="activityTotal">  <%= @user.trip.avg_activities %></h4> <br>
-			<h3> Travel:</h3>
-			<h4 id ="travelTotal"> <%= @user.trip.avg_travel %> </h4> 
-
-		<form id="current_trip">
-			<h5> Your Days spendings </h5>
-				<h6> Hotel: </h6> 
-					<input type="text" name="hotel" id="avg_hotel">
-				<h6> Food: </h6>
-					<input type="text" name="food" id="avg_food">
-				<h6> Activity: </h6> 
-					<input type="text" name="activity" id="avg_activity">
-				<h6> Travel: </h6>
-					<input type="text" name="travel" id="avg_travel">
-				<button id="update_trip"> Update </button>
-		</form>
+				<form id="current_trip" class="large-9 columns">
+					<h6> Your Days spendings </h6>
+						<div class="large-6 columns">
+							<h6> Hotel: </h6> 
+								<input type="text" name="hotel" id="avg_hotel">
+							<h6> Food: </h6>
+								<input type="text" name="food" id="avg_food">
+							</div>
+						<div class="large-6 columns">
+							<h6> Activity: </h6> 
+								<input type="text" name="activity" id="avg_activity">
+							<h6> Travel: </h6>
+								<input type="text" name="travel" id="avg_travel">
+							<button id="update_trip"> Update </button>
+						</div>
+				</form>
+			</div>
+		</div>
 	</div>
 
 </body>

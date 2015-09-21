@@ -17,7 +17,7 @@ class Api::UsersController < ApplicationController
 		user = User.find_by(username: params[:username])
 		Trip.create(user_id: user.id)
 		session[:user_id] = user.id
-		render '/welcome'
+		redirect_to user_path(user)
 	end
 	end
 
@@ -35,7 +35,7 @@ class Api::UsersController < ApplicationController
 	private
 
 	def user_params
-		params.permit(:username, :password, :avatar)
+		params.permit(:username, :password, :email)
 	end
 
 

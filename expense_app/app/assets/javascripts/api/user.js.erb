@@ -20,11 +20,11 @@ $(function(){
 					avg_activities: avg_activities
 				},
 				success: function(newTripRate) {
-					$("#dayTotal").text(newTripRate.avg_days); 
-					$("#hotelTotal").text(newTripRate.avg_hotel);
-					$("#foodTotal").text(newTripRate.avg_food);
-					$("#activityTotal").text(newTripRate.avg_activities);
-					$("#travelTotal").text(newTripRate.avg_travel);
+					$("#dayTotal").text(newTripRate.avg_days.toLocaleString()); 
+					$("#hotelTotal").text(newTripRate.avg_hotel.toLocaleString());
+					$("#foodTotal").text(newTripRate.avg_food.toLocaleString());
+					$("#activityTotal").text(newTripRate.avg_activities.toLocaleString());
+					$("#travelTotal").text(newTripRate.avg_travel.toLocaleString());
 					
 				}
 			});
@@ -85,15 +85,15 @@ $(function(){
 				avg_travel: avg_travel,
 			},
 			success: function(returnedTrip) {
-				$("#dayTotal").text(returnedTrip.avg_days); 
-				$("#hotelTotal").text(returnedTrip.avg_hotel);
-				$("#foodTotal").text(returnedTrip.avg_food);
-				$("#activityTotal").text(returnedTrip.avg_activities);
-				$("#travelTotal").text(returnedTrip.avg_travel);
-				$("#avg_hotel").text(" ");
-				$("#avg_food").text(" ");
-				$("#avg_activity").text(" ");
-				$("#avg_travel").text(" ");
+				$("#dayTotal").text(returnedTrip.avg_days.toLocaleString()); 
+				$("#hotelTotal").text(returnedTrip.avg_hotel.toLocaleString());
+				$("#foodTotal").text(returnedTrip.avg_food.toLocaleString());
+				$("#activityTotal").text(returnedTrip.avg_activities.toLocaleString());
+				$("#travelTotal").text(returnedTrip.avg_travel.toLocaleString());
+				$("#avg_hotel").text("");
+				$("#avg_food").text("");
+				$("#avg_activity").text("");
+				$("#avg_travel").text("");
 			}
 		});
 
@@ -143,6 +143,7 @@ $(function(){
 				tripUpdate.avg_activities = average[3];
 				tripUpdate.avg_travel = average[2];
 		var avg_day =  average[0] + average[1] + average[3] + average[2];
+
 		$.ajax({
 			url: '/api/users/' + user_id + '/trips/' + trip_id,
 			method: 'PUT',
@@ -160,11 +161,17 @@ $(function(){
 				avg_travel: tripUpdate.avg_travel,
 			},
 			success: function(returnedTrip) {
-				$("#dayTotal").text(returnedTrip.avg_days); 
-				$("#hotelTotal").text(returnedTrip.avg_hotel);
-				$("#foodTotal").text(returnedTrip.avg_food);
-				$("#activityTotal").text(returnedTrip.avg_activities);
-				$("#travelTotal").text(returnedTrip.avg_travel);
+				$("#dayTotal").text(returnedTrip.avg_days.toLocaleString()); 
+				$("#hotelTotal").text(returnedTrip.avg_hotel.toLocaleString());
+				$("#foodTotal").text(returnedTrip.avg_food.toLocaleString());
+				$("#activityTotal").text(returnedTrip.avg_activities.toLocaleString());
+				$("#travelTotal").text(returnedTrip.avg_travel.toLocaleString());
+				$("#totel").text("");
+				$("#food").text("");
+				$("#number").text("");
+				$("#hotel").text("");
+				$("#activity").text("");
+				$("#travel").text("");
 			}
 		});
 	};

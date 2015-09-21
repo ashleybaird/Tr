@@ -9,21 +9,131 @@ body {
 
 #container {
 	text-align: center;
-	float: right;
-	width: 80%;
-	padding-right: 6em;
-	background-color: rgba(92, 173, 133, 0.5);
+	width: 50%;
+	background-color: rgba(235, 245, 255, 0.7);
 	border-radius: 5%;
 	margin-right: 2%;
 	margin-top: 1em;
+	font: white; 
+	padding: 10px;
+   background: rgba(235, 245, 255, 0.9);
+   color: black;
+   font-size: 20px;
+   font-weight: bold;
+   line-height: 1.3em;
+   border: 2px dashed #fff;
+   border-radius: 10px;
+   box-shadow: 0 0 0 4px #ffffff, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+   text-shadow: -1px -1px rgb(235, 245, 255);
+   font-weight: normal;
 
 }
+
+#welcome {
+	border-bottom: 2px solid black;
+}
+
+#newUser {
+	margin-left: 25%;
+	border-right: 2px solid black; 
+	float: left;
+}
+
+#newSession {
+	margin-right: 24%;
+}
+
+.stitched {
+   padding: 20px;
+   margin: 10px;
+   background: rgba(235, 245, 255, 0.9);
+   color: black;
+   font-size: 40px;
+   font-weight: bold;
+   line-height: 1.3em;
+   border: 2px dashed #fff;
+   border-radius: 10px;
+   box-shadow: 0 0 0 4px #ffffff, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+   text-shadow: -1px -1px #aa3030;
+   font-weight: normal;
+}
+
+#add_trip input[type="text"] {
+ background-color: transparent; 
+border-style: solid; 
+border-width: 0px 0px 1px 0px; 
+border-color: black;
+}
+
 
 .info {
 	width: 50%;
 	margin-left: 25%;
 }
 
-/*#newUser {
+#trip-template {
+	background-color: rgba(235, 245, 255,0.9);
+	text-align: center;
+}
 
-}*/
+#header {
+	text-align: center;
+}
+
+#current h2 {
+	text-align: center;
+}
+
+#currency_converter {
+	width: 20%;
+	float: right;
+}
+
+h5 {
+	margin-right: 3%;
+}
+
+#current-template {
+	margin-left: 10%;
+	margin-bottom: 2px solid black;
+}
+h3 {
+	text-align: center;
+}
+
+#current_trip {
+	margin-top: 7%;
+	margin-left: 10%;
+	text-align: center;
+}
+
+#first_options {
+	margin-right: 2px solid black;
+}
+
+#current_trip h5{
+	text-align: center;
+}
+
+#current_trip h6{
+	border-bottom: 2px solid black;
+}
+
+#header h6 {
+	width: 10%;
+	margin: auto;
+}
+
+
+h2 {
+	border-bottom: 2px solid black;
+}
+
+#add_trip h3 {
+	border-bottom: 2px solid black;
+}
+
+
+
+
+
