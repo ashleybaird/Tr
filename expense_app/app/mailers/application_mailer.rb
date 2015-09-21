@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "https://serene-savannah-1071.herokuapp.com/"
+  default from: ENV["EMAIL_USERNAME"]
   layout 'mailer'
 end

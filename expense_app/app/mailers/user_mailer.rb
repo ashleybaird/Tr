@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-	default from: 'https://serene-savannah-1071.herokuapp.com/'
+	default from: ENV["EMAIL_USERNAME"]
  
   def welcome_email(user)
     @user = user

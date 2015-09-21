@@ -10,17 +10,20 @@ class Api::UsersController < ApplicationController
 	end
 
 	def create
-		@user = User.create(user_params)
-		if @user.errors.any?
-       		redirect_to root_path
-    else 
-		user = User.find_by(username: params[:username])
-		UserMailer.welcome_email(@user).deliver_later
-        format.html { redirect_to(@user, notice: 'User was successfully created.')}
-		Trip.create(user_id: user.id)
-		session[:user_id] = user.id
-		redirect_to user_path(user)
-	end
+
+		
+			@user = User.create(user_params)
+			if @user.errors.any?
+	       		redirect_to root_path
+		    else 
+				@user = User.find_by(username: params[:username])
+				UserMailer.welcome_email(@user).deliver_later
+				Trip.create(user_id: @user.id)
+				session[:user_id] = @user.id
+		        redirect_to user_path(@user)
+		 
+			end
+		
 	end
 
 	def update

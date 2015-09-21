@@ -35,7 +35,6 @@ body {
 
 #newUser {
 	margin-left: 25%;
-	border-right: 2px solid black; 
 	float: left;
 }
 
@@ -133,7 +132,45 @@ h2 {
 	border-bottom: 2px solid black;
 }
 
+@media (min-width: 700px) {
+	#container {
+		width: 80%;
+	}
+	#newUser {
+		margin-left: 5%;
+		margin: auto;
+	}
+	#newSession {
+		margin-right: 7%;
+		
+	}
+}
 
+@media (min-width: 599) and (max-width: 699) {
+	#newUser {
+		margin: auto;
+	}
+	#newSession {
+		margin: auto;
+	}
+}
+
+@media (max-width: 600px) {
+	#container {
+		width: 90%;
+	}
+	#container h1 {
+		margin-left: 18%;
+	}
+	#newUser {
+		width:80%;
+		
+	}
+	#newSession {
+		width: 75%;
+		margin: auto;	
+	}
+}
 
 
 
