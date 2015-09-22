@@ -128,6 +128,10 @@ h2 {
 	border-bottom: 2px solid black;
 }
 
+h1 {
+	font-family: fantasy;
+}
+
 #add_trip h3 {
 	border-bottom: 2px solid black;
 }
