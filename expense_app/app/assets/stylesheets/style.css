@@ -142,6 +142,7 @@ h2 {
 	}
 	#newSession {
 		margin-right: 7%;
+		margin: auto;
 		
 	}
 }
@@ -163,11 +164,10 @@ h2 {
 		margin-left: 18%;
 	}
 	#newUser {
-		width:80%;
+		margin: auto;
 		
 	}
 	#newSession {
-		width: 75%;
 		margin: auto;	
 	}
 }

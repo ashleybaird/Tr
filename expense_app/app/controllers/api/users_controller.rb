@@ -10,20 +10,15 @@ class Api::UsersController < ApplicationController
 	end
 
 	def create
-
-		
-			@user = User.create(user_params)
-			if @user.errors.any?
-	       		redirect_to root_path
-		    else 
-				@user = User.find_by(username: params[:username])
-				UserMailer.welcome_email(@user).deliver_later
-				Trip.create(user_id: @user.id)
-				session[:user_id] = @user.id
-		        redirect_to user_path(@user)
-		 
-			end
-		
+		@user = User.create(user_params)
+		if @user.errors.any?
+	       	redirect_to root_path
+		else 
+			@user = User.find_by(username: params[:username])
+			Trip.create(user_id: @user.id)
+			session[:user_id] = @user.id
+		    redirect_to user_path(@user)
+		 end
 	end
 
 	def update
@@ -40,7 +35,7 @@ class Api::UsersController < ApplicationController
 	private
 
 	def user_params
-		params.permit(:username, :password, :email)
+		params.permit(:username, :password)
 	end
 
 

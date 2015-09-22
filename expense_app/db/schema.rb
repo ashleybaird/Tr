@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20150921192805) do
     t.string   "avatar",          default: "http://bangkeodanang.com/templates/images/empty_avatar.png"
     t.datetime "created_at",                                                                             null: false
     t.datetime "updated_at",                                                                             null: false
-    t.string   "email"
   end
 
   add_foreign_key "trips", "users"
