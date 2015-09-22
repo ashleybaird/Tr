@@ -6,7 +6,7 @@
 	<div class="row" id="container">
 		<div class="small-10 large-11 columns">
 					<h1 id="welcome">Welcome!</h1>
-				<div id ="newUser" class="large-3 columns">
+				<div id ="newUser" class=" small-6 large-3 columns">
 					<%= form_tag "/sessions" do %>
 						<h6>Username</h6>
 						<h7 class="info"> <%= text_field_tag :username %> <br> </h7>
@@ -15,7 +15,7 @@
 						 <%= button_to "Log In", {:controller => "sessions", :action => "create"} %>   <br>
 					<% end %>
 				</div>
-				<div id="newSession" class="large-3  columns">
+				<div id="newSession" class="small-6 large-3  columns">
 					<%= form_tag "/api/users" do %>
 						<% if @user.errors.any? %> 
 				                <% @user.errors.full_messages.each do |msg| %>
