@@ -9,7 +9,6 @@ body {
 
 #container {
 	text-align: center;
-	font-family: fantasy;
 	width: 50%;
 	background-color: rgba(235, 245, 255, 0.7);
 	border-radius: 5%;
@@ -35,11 +34,13 @@ body {
 }
 
 #newUser {
+	font-family: fantasy;
 	margin-left: 25%;
 	float: left;
 }
 
 #newSession {
+	font-family: fantasy;
 	margin-right: 24%;
 }
 
