@@ -9,6 +9,7 @@ body {
 
 #container {
 	text-align: center;
+	font-family: fantasy;
 	width: 50%;
 	background-color: rgba(235, 245, 255, 0.7);
 	border-radius: 5%;
