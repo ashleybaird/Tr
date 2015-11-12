@@ -90,10 +90,10 @@ $(function(){
 				$("#foodTotal").text(returnedTrip.avg_food.toLocaleString());
 				$("#activityTotal").text(returnedTrip.avg_activities.toLocaleString());
 				$("#travelTotal").text(returnedTrip.avg_travel.toLocaleString());
-				$("#avg_hotel").text("");
-				$("#avg_food").text("");
-				$("#avg_activity").text("");
-				$("#avg_travel").text("");
+				$("#avg_hotel").val(" ");
+				$("#avg_food").val(" ");
+				$("#avg_activity").val(" ");
+				$("#avg_travel").val(" ");
 			}
 		});
 
@@ -166,12 +166,11 @@ $(function(){
 				$("#foodTotal").text(returnedTrip.avg_food.toLocaleString());
 				$("#activityTotal").text(returnedTrip.avg_activities.toLocaleString());
 				$("#travelTotal").text(returnedTrip.avg_travel.toLocaleString());
-				$("#totel").text("");
-				$("#food").text("");
-				$("#number").text("");
-				$("#hotel").text("");
-				$("#activity").text("");
-				$("#travel").text("");
+				$("#food").val(" ");
+				$("#number").val(" ");
+				$("#hotel").val(" ");
+				$("#activity").val(" ");
+				$("#travel").val(" ");
 			}
 		});
 	};

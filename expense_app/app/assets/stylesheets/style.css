@@ -5,7 +5,7 @@ body {
   -o-background-size: cover;
   background-size: cover;;
 	display: cover;
-}
+} 
 
 #container {
 	text-align: center;
@@ -43,7 +43,13 @@ body {
 	font-family: fantasy;
 	margin-right: 24%;
 }
+#newSession h3 {
+	border-bottom: 2px solid black;
+}
 
+#newUser h3 {
+	border-bottom: 2px solid black;
+}
 .stitched {
    padding: 20px;
    margin: 10px;

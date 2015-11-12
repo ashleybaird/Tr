@@ -1,4 +1,4 @@
-##User Stories
+## User Stories
 1. User creates an account with an avatar
 2. On their profile page they have the option to add a trip
 3. When they add a trip they provide the number of days, total budget and the budget for their (hotel, food, activities, travel)
@@ -6,7 +6,7 @@
 5. Every day it will update and adjust itself based on how much the user spent for that day
 6. When a trip is over it will delete itself
 
-##Routes:
+## Routes:
 1. GET "/users/new"
 2. POST "/users"
 3. POST "/sessions/new"

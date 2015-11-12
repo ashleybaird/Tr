@@ -7,6 +7,7 @@
 		<div class="small-10 large-11 columns">
 					<h1 id="welcome">Make It Rain!</h1>
 				<div id ="newUser" class=" small-6 large-3 columns">
+					<h3> Log In </h3>
 					<%= form_tag "/sessions" do %>
 						<h6>Username</h6>
 						<h7 class="info"> <%= text_field_tag :username %> <br> </h7>
@@ -16,6 +17,7 @@
 					<% end %>
 				</div>
 				<div id="newSession" class="small-6 large-3  columns">
+					<h3> New User </h3>
 					<%= form_tag "/api/users" do %>
 						<% if @user.errors.any? %> 
 				                <% @user.errors.full_messages.each do |msg| %>
